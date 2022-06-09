@@ -1,27 +1,14 @@
+// tslint:disable
 import * as React from 'react';
 import { Continent } from '../types/types';
 import { Typography, Button } from '@mui/material';
 import AppContext from '../context/AppContext';
-import { makeStyles } from '@mui/styles';
 
 interface ComponentProps {
   continent: Continent;
 }
 
-const useStyles = makeStyles((theme) => ({
-  clickedButton: {
-    color: theme.clicked.color,
-    borderColor: theme.clicked.borderColor,
-  },
-  notClickedButton: {
-    color: theme.notClicked.color,
-    borderColor: theme.notClicked.borderColor,
-  },
-}));
-
 export default function ContinentItem({ continent }: ComponentProps) {
-  const classes = useStyles();
-
   const {
     state: { continentName },
     dispatch,
@@ -31,7 +18,7 @@ export default function ContinentItem({ continent }: ComponentProps) {
     React.useState(continentName);
 
   const handleContinentOnClick = (
-    event: React.MouseEvent<HTMLButtonElement>
+    event: React.MouseEvent<HTMLButtonElement>,
   ) => {
     const continentButtonText =
       event.currentTarget.childNodes[0].textContent.toLowerCase();
@@ -44,25 +31,33 @@ export default function ContinentItem({ continent }: ComponentProps) {
 
   return (
     <Button
-      data-testid="continent-button"
-      variant="outlined"
-      sx={{
-        mb: 2,
-        fontSize: 3,
-        textTransform: 'none',
-        mr: { sm: 6 },
-        '&: last-of-type': {
-          mr: { md: 0 },
-        },
-      }}
-      className={
-        Boolean(continentName) && continentName === selectedContinent
-          ? classes.clickedButton
-          : classes.notClickedButton
-      }
+      data-testid='continent-button'
+      variant='outlined'
+      sx={Boolean(continentName) && continentName === selectedContinent
+        ? {
+          mb: 2,
+          fontSize: 3,
+          textTransform: 'none',
+          mr: { sm: 6 },
+          '&: last-of-type': {
+            mr: { md: 0 },
+          },
+          color: '#e3127e',
+          borderColor: '#e3127e',
+        } : {
+          mb: 2,
+          fontSize: 3,
+          textTransform: 'none',
+          mr: { sm: 6 },
+          '&: last-of-type': {
+            mr: { md: 0 },
+          },
+          color: '#000000',
+          borderColor: '#000000',
+        }}
       onClick={handleContinentOnClick}
     >
-      <Typography variant="h5" component="span">
+      <Typography variant='h5' component='span'>
         {continent}
       </Typography>
     </Button>

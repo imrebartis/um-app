@@ -1,25 +1,13 @@
+// tslint:disable
 import * as React from 'react';
 import { Box, Typography } from '@mui/material';
 import { Country } from '../types/types';
-import { makeStyles } from '@mui/styles';
 
 interface ComponentProps {
   country: Country;
 }
 
-const useStyles = makeStyles((theme) => ({
-  clickedBox: {
-    color: theme.clicked.color,
-    borderColor: theme.clicked.borderColor,
-  },
-  notClickedBox: {
-    color: theme.notClicked.color,
-    borderColor: theme.notClicked.borderColor,
-  },
-}));
-
 export default function CountryItem({ country }: ComponentProps) {
-  const classes = useStyles();
 
   const [clicked, setClicked] = React.useState(false);
 
@@ -30,14 +18,23 @@ export default function CountryItem({ country }: ComponentProps) {
   return (
     <Box
       onClick={handleCountryOnClick}
-      sx={{
+      sx={clicked ? {
         cursor: 'pointer',
         '@media screen and (max-width: 600px)': {
           display: 'flex',
           justifyContent: 'center',
         },
+        color: '#e3127e',
+        borderColor: '#e3127e',
+      } : {
+        cursor: 'pointer',
+        '@media screen and (max-width: 600px)': {
+          display: 'flex',
+          justifyContent: 'center',
+        },
+        color: '#000000',
+        borderColor: '#000000',
       }}
-      className={clicked ? classes.clickedBox : classes.notClickedBox}
     >
       <Typography
         variant="h5"

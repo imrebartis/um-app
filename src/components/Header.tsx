@@ -30,7 +30,7 @@ function appBarLabel(label: string) {
   const classes = useStyles();
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
   return (
-    <Toolbar sx={{ height: '12rem' }} sm={3}>
+    <Toolbar sx={{ height: '12rem' }}>
       <IconButton
         sx={{
           display: {
