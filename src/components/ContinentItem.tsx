@@ -6,6 +6,7 @@ import AppContext from '../context/AppContext';
 
 interface ComponentProps {
   continent: Continent;
+  key: Continent;
 }
 
 export default function ContinentItem({ continent }: ComponentProps) {
@@ -14,18 +15,12 @@ export default function ContinentItem({ continent }: ComponentProps) {
     dispatch,
   } = React.useContext(AppContext);
 
-  const [selectedContinent, setSelectedContinent] =
-    React.useState(continentName);
-
   const handleContinentOnClick = (
     event: React.MouseEvent<HTMLButtonElement>,
   ) => {
-    const continentButtonText =
-      event.currentTarget.childNodes[0].textContent.toLowerCase();
-    setSelectedContinent(continentButtonText);
     dispatch({
       type: 'continent-update',
-      payload: continentButtonText,
+      payload: continent.toLowerCase(),
     });
   };
 
@@ -33,7 +28,7 @@ export default function ContinentItem({ continent }: ComponentProps) {
     <Button
       data-testid='continent-button'
       variant='outlined'
-      sx={Boolean(continentName) && continentName === selectedContinent
+      sx={Boolean(continentName) && continentName === continent.toLowerCase()
         ? {
           mb: 2,
           fontSize: 3,

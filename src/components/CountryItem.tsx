@@ -17,6 +17,7 @@ export default function CountryItem({ country }: ComponentProps) {
 
   return (
     <Box
+      data-testid='country-item'
       onClick={handleCountryOnClick}
       sx={clicked ? {
         cursor: 'pointer',

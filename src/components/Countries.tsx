@@ -18,7 +18,7 @@ export default function Countries({
 }: ComponentProps) {
   return (
     <React.Fragment>
-      {!loading && countries.length > 0 ? (
+      {!loading && (countries.length > 0) && !error ? (
         <Box
           sx={{
             flexGrow: 1,

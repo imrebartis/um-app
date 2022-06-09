@@ -1,5 +1,5 @@
 // tslint:disable
-import * as React from 'react';
+import React from 'react';
 import '../style.css';
 import { Country, Continent } from '../types/types';
 import Header from './Header';
@@ -13,7 +13,6 @@ import { makeStyles } from '@mui/styles';
 import { Theme } from '@mui/material/styles';
 
 declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface (remove this line if you don't have the rule enabled)
   interface DefaultTheme extends Theme { }
 }
 
@@ -83,7 +82,7 @@ export default function Main() {
     <div>
       <Header />
       <ThemeProvider theme={lightTheme}>
-        <main className={classes.main}>
+        <main data-testid='main' className={classes.main}>
           <PageHeading />
           <Continents loading={loading} error={error} continents={continents} />
           <Countries loading={loading} error={error} countries={countries} />
