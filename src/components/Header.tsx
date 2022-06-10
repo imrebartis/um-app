@@ -110,7 +110,7 @@ function appBarLabel(label: string) {
   );
 }
 
-export default function EnableColorOnDarkAppBar() {
+const EnableColorOnDarkAppBar = () => {
   return (
     <Stack spacing={2} sx={{ flexGrow: 1 }}>
       <ThemeProvider theme={darkTheme}>
@@ -120,4 +120,6 @@ export default function EnableColorOnDarkAppBar() {
       </ThemeProvider>
     </Stack>
   );
-}
+};
+
+export default React.memo(EnableColorOnDarkAppBar);
