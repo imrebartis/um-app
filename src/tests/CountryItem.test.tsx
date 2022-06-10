@@ -9,7 +9,7 @@ test('country item\'s highlight toggles when clicked', async () => {
   render(
     <TestContextProvider>
       <CountryItem
-        country={{ name: 'Albania', continent: 'Europe', numericCode: 1, error: 'error' }}
+        country={{ name: 'Albania', continent: 'Europe', numericCode: 1 }}
       />
     </TestContextProvider>,
   );

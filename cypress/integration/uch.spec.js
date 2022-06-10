@@ -11,7 +11,7 @@ describe('the uch app', () => {
         cy.get('[data-testid="main"]').contains('Malta');
     });
 
-    it('should display highlight the continent button that has been clicked', () => {
+    it('should highlight the continent button that has been clicked', () => {
         cy.findByText(/oceania/i).click();
         cy.findByText(/oceania/i).should('have.css', 'color', 'rgb(227, 18, 126)');
     });
