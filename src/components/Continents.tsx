@@ -1,3 +1,4 @@
+// tslint:disable
 import * as React from 'react';
 import { Continent } from '../types/types';
 import { Box } from '@mui/material';

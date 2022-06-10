@@ -1,14 +1,20 @@
-import * as React from 'react';
+// tslint:disable
+import React from 'react';
 import '../style.css';
-import { Country } from '../types/types';
+import { Country, Continent } from '../types/types';
 import Header from './Header';
 import PageHeading from './PageHeading';
 import Countries from './Countries';
 import Continents from './Continents';
 import AppContext from '../context/AppContext';
 import { ThemeProvider } from '@mui/material';
-import { theme } from '../themes/LightTheme';
+import { lightTheme } from '../themes/lightTheme';
 import { makeStyles } from '@mui/styles';
+import { Theme } from '@mui/material/styles';
+
+declare module '@mui/styles/defaultTheme' {
+  interface DefaultTheme extends Theme { }
+}
 
 const useStyles = makeStyles({
   main: {
@@ -23,7 +29,7 @@ const useStyles = makeStyles({
 
 export default function Main() {
   const classes = useStyles();
-  const [continents, setContinents] = React.useState([]);
+  const [continents, setContinents] = React.useState<Continent[]>([]);
   const [countries, setCountries] = React.useState<Country[]>([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState('');
@@ -57,14 +63,14 @@ export default function Main() {
     }
   };
 
-  const renderContinentNames = (data) => {
+  const renderContinentNames = (data: Country[]) => {
     const continentsData = data.map((data) => data.continent);
     const uniqueContinentNames = [...new Set(continentsData)];
     const sortedUniqueContinentNames = uniqueContinentNames.sort();
     setContinents(sortedUniqueContinentNames);
   };
 
-  const getFilteredData = (data) => {
+  const getFilteredData = (data: any[]) => {
     return data.filter((d) => d.continent.toLowerCase() === continentName);
   };
 
@@ -75,8 +81,8 @@ export default function Main() {
   return (
     <div>
       <Header />
-      <ThemeProvider theme={theme}>
-        <main className={classes.main}>
+      <ThemeProvider theme={lightTheme}>
+        <main data-testid='main' className={classes.main}>
           <PageHeading />
           <Continents loading={loading} error={error} continents={continents} />
           <Countries loading={loading} error={error} countries={countries} />

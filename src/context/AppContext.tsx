@@ -1,3 +1,4 @@
+// tslint:disable
 import * as React from 'react';
 
 interface AppContextState {
@@ -20,7 +21,7 @@ const initialState = {
   state: {
     continentName: '',
   },
-  dispatch: () => {},
+  dispatch: () => { },
 };
 
 const AppContext = React.createContext<AppContext>(initialState);
