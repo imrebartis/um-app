@@ -17,8 +17,8 @@ test('country item\'s highlight toggles when clicked', async () => {
   const countryItem = screen.getByTestId('country-item');
 
   fireEvent.click(screen.getByTestId('country-item'));
-  expect(countryItem).toHaveStyle({ 'color': 'rgb(227, 18, 126)' });
+  expect(countryItem).toHaveStyle({ color: 'rgb(227, 18, 126)' });
 
   fireEvent.click(countryItem);
-  expect(countryItem).toHaveStyle({ 'color': 'rgb(0, 0, 0)' });
+  expect(countryItem).toHaveStyle({ color: 'rgb(0, 0, 0)' });
 });

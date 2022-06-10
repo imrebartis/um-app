@@ -10,4 +10,9 @@ describe('the uch app', () => {
         cy.findByText(/europe/i).click();
         cy.get('[data-testid="main"]').contains('Malta');
     });
+
+    it('should display highlight the continent button that has been clicked', () => {
+        cy.findByText(/oceania/i).click();
+        cy.findByText(/oceania/i).should('have.css', 'color', 'rgb(227, 18, 126)');
+    });
 });
