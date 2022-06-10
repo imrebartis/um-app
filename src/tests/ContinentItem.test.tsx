@@ -27,20 +27,3 @@ test('continent item is selected', async () => {
   fireEvent.click(screen.getByTestId('continent-button'));
   expect(mockedDispatch).toHaveBeenCalledTimes(1);
 });
-
-test('continent button gets highlighted when clicked', async () => {
-  const continent = 'Europe';
-  render(
-    <TestContextProvider>
-      <ContinentItem
-        key={continent}
-        continent={continent}
-      />
-    </TestContextProvider>,
-  );
-
-  const continentButton = screen.getByTestId('continent-button');
-
-  fireEvent.click(continentButton);
-  expect(continentButton).toHaveStyle({ 'color': 'rgb(227, 18, 126)' });
-});
