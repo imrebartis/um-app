@@ -11,6 +11,7 @@ import { ThemeProvider } from '@mui/material';
 import { lightTheme } from '../themes/lightTheme';
 import { makeStyles } from '@mui/styles';
 import { Theme } from '@mui/material/styles';
+import Error from './Error';
 
 declare module '@mui/styles/defaultTheme' {
   interface DefaultTheme extends Theme { }
@@ -84,8 +85,9 @@ export default function Main() {
       <ThemeProvider theme={lightTheme}>
         <main data-testid='main' className={classes.main}>
           <PageHeading />
-          <Continents loading={loading} error={error} continents={continents} />
-          <Countries loading={loading} error={error} countries={countries} />
+          <Continents loading={loading} continents={continents} />
+          <Countries loading={loading} countries={countries} />
+          {error && <Error error={error} />}
         </main>
       </ThemeProvider>
     </div>

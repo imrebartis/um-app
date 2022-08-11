@@ -4,18 +4,15 @@ import { Continent } from '../types/types';
 import { Box } from '@mui/material';
 import Loader from './Loader';
 import ContinentItem from './ContinentItem';
-import Error from './Error';
 
 interface ComponentProps {
   continents: Continent[];
   loading: boolean;
-  error: string;
 }
 
 export default function Continents({
   continents,
   loading,
-  error,
 }: ComponentProps) {
   return (
     <React.Fragment>
@@ -42,7 +39,6 @@ export default function Continents({
       ) : (
         <Loader />
       )}
-      {error && <Error error={error} />}
     </React.Fragment>
   );
 }

@@ -8,17 +8,15 @@ import Error from './Error';
 interface ComponentProps {
   countries: Country[];
   loading: boolean;
-  error: string;
 }
 
 export default function Countries({
   countries,
-  error,
   loading,
 }: ComponentProps) {
   return (
     <React.Fragment>
-      {!loading && (countries.length > 0) && !error ? (
+      {!loading && (countries.length > 0) ? (
         <Box
           sx={{
             flexGrow: 1,
@@ -52,7 +50,6 @@ export default function Countries({
       ) : (
         <Loader />
       )}
-      {error && <Error error={error} />}
     </React.Fragment>
   );
 }
