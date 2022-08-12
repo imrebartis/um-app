@@ -47,16 +47,7 @@ export default function Main() {
       console.log(response.status);
       const data = (await response.json()) as Country[];
       if (response.status === 200) {
-        if (data.length > 0) {
-          renderContinentNames(data);
-          if (Boolean(continentName)) {
-            const filteredData = getFilteredData(data);
-            setCountries(filteredData);
-          } else {
-            setCountries(data);
-          }
-          setLoading(false);
-        }
+        checkForData(data);
       }
     } catch (error) {
       console.error(error);
@@ -74,6 +65,21 @@ export default function Main() {
   const getFilteredData = (data: any[]) => {
     return data.filter((d) => d.continent.toLowerCase() === continentName);
   };
+
+  const checkForData = (data: any[]) => {
+    if (data.length > 0) {
+      renderContinentNames(data);
+      if (Boolean(continentName)) {
+        const filteredData = getFilteredData(data);
+        setCountries(filteredData);
+      } else {
+        setCountries(data);
+      }
+      setLoading(false);
+    } else {
+      setLoading(true);
+    }
+  }
 
   React.useEffect(() => {
     fetchCountries();

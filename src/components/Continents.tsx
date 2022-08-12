@@ -37,7 +37,9 @@ export default function Continents({
           ))}
         </Box>
       ) : (
-        <Loader />
+        <div>
+          <Loader />
+        </div>
       )}
     </React.Fragment>
   );

@@ -48,7 +48,9 @@ export default function Countries({
           </Grid>
         </Box>
       ) : (
-        <Loader />
+        <div>
+          <Loader />
+        </div>
       )}
     </React.Fragment>
   );
