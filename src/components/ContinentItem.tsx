@@ -15,8 +15,19 @@ export default function ContinentItem({ continent }: ComponentProps) {
     dispatch,
   } = React.useContext(AppContext);
 
-  const handleContinentOnClick = (
-    event: React.MouseEvent<HTMLButtonElement>,
+  const isContinentName =
+    Boolean(continentName) && continentName === continent.toLowerCase();
+
+  const handleEmptyContinentOnClick = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    dispatch({
+      type: 'continent-empty',
+    });
+  };
+
+  const handleUpdateContinentOnClick = (
+    event: React.MouseEvent<HTMLButtonElement>
   ) => {
     dispatch({
       type: 'continent-update',
@@ -28,29 +39,36 @@ export default function ContinentItem({ continent }: ComponentProps) {
     <Button
       data-testid='continent-button'
       variant='outlined'
-      sx={Boolean(continentName) && continentName === continent.toLowerCase()
-        ? {
-          mb: 2,
-          fontSize: 3,
-          textTransform: 'none',
-          mr: { sm: 6 },
-          '&: last-of-type': {
-            mr: { md: 0 },
-          },
-          color: '#e3127e',
-          borderColor: '#e3127e',
-        } : {
-          mb: 2,
-          fontSize: 3,
-          textTransform: 'none',
-          mr: { sm: 6 },
-          '&: last-of-type': {
-            mr: { md: 0 },
-          },
-          color: '#000000',
-          borderColor: '#000000',
-        }}
-      onClick={handleContinentOnClick}
+      sx={
+        isContinentName
+          ? {
+              mb: 2,
+              fontSize: 3,
+              textTransform: 'none',
+              mr: { sm: 6 },
+              '&: last-of-type': {
+                mr: { md: 0 },
+              },
+              color: '#e3127e',
+              borderColor: '#e3127e',
+            }
+          : {
+              mb: 2,
+              fontSize: 3,
+              textTransform: 'none',
+              mr: { sm: 6 },
+              '&: last-of-type': {
+                mr: { md: 0 },
+              },
+              color: '#000000',
+              borderColor: '#000000',
+            }
+      }
+      onClick={
+        isContinentName
+          ? handleEmptyContinentOnClick
+          : handleUpdateContinentOnClick
+      }
     >
       <Typography variant='h5' component='span'>
         {continent}

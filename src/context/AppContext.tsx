@@ -15,13 +15,17 @@ type ContinentUpdateAction = {
   payload: string;
 };
 
-type AppAction = ContinentUpdateAction;
+type ContinentEmptyAction = {
+  type: 'continent-empty';
+};
+
+type AppAction = ContinentUpdateAction | ContinentEmptyAction;
 
 const initialState = {
   state: {
     continentName: '',
   },
-  dispatch: () => { },
+  dispatch: () => {},
 };
 
 const AppContext = React.createContext<AppContext>(initialState);
@@ -35,6 +39,11 @@ const uchReducer: React.Reducer<AppContextState, AppAction> = (
       return {
         ...state,
         continentName: action.payload,
+      };
+    }
+    case 'continent-empty': {
+      return {
+        continentName: '',
       };
     }
     default:
