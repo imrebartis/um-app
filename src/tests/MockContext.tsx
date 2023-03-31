@@ -15,7 +15,11 @@ type ContinentUpdateAction = {
   payload: string;
 };
 
-type AppAction = ContinentUpdateAction;
+type ContinentEmptyAction = {
+  type: 'continent-empty';
+};
+
+type AppAction = ContinentUpdateAction | ContinentEmptyAction;
 
 export const mockedDispatch = jest.fn();
 
@@ -39,6 +43,11 @@ const uchReducer: React.Reducer<TestContextState, AppAction> = (
         continentName: action.payload,
       };
     }
+    case 'continent-empty': {
+      return {
+        continentName: '',
+      };
+    }
     default:
       return state;
   }
@@ -54,7 +63,11 @@ function TestContextProvider({
   });
 
   const value = { state, dispatch: mockedDispatch };
-  return <TestContextInstance.Provider value={value}>{children}</TestContextInstance.Provider>;
+  return (
+    <TestContextInstance.Provider value={value}>
+      {children}
+    </TestContextInstance.Provider>
+  );
 }
 
 export { TestContextProvider };
